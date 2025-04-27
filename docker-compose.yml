@@ -11,3 +11,8 @@ services:
     volumes:
       - ./model_repository:/models
     command: ["tritonserver", "--model-repository=/models", "--log-verbose=1"]
+    networks:
+      - kafka-net
+networks:
+  kafka-net:
+    external: true
