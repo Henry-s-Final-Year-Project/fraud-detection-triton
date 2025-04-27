@@ -1,12 +1,12 @@
-name: "geolocation-fraud-detection"
-platform: "xgboost"
+name: "fraud-detection"
+platform: "onnxruntime_onnx"
 max_batch_size: 0
 
 input [
     {
-        name: "input__0"
+        name: "input"
         data_type: TYPE_FP32
-        dims: [20]
+        dims: [1,20]
     }
 ]
 
@@ -14,7 +14,7 @@ output [
     {
         name: "probabilities"
         data_type: TYPE_FP32
-        dims: [2]
+        dims: [1, 2]
     }
 ]
 

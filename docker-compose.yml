@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  triton-inference-server:
+    image: nvcr.io/nvidia/tritonserver:23.09-py3
+    container_name: triton-server
+    ports:
+      - "8000:8000" # HTTP/REST API
+      - "8001:8001" # gRPC API (optional, you can use REST only)
+      - "8002:8002" # Metrics (Prometheus monitoring)
+    volumes:
+      - ./model_repository:/models
+    command: ["tritonserver", "--model-repository=/models", "--log-verbose=1"]
