@@ -5,7 +5,7 @@ from onnxmltools.convert.common.data_types import FloatTensorType
 
 # Load your trained .bst model
 model = xgboost.Booster()
-model.load_model("models/xgb_geolocation_fraud_model.bst")
+model.load_model("models/xgb_geolocation_fraud_model_updated.bst")
 print(model.feature_names)
 
 feature_names = [f"f{i}" for i in range(20)]  # assuming 20 features
@@ -17,5 +17,5 @@ initial_type = [("input", FloatTensorType([1, 20]))]  # 20 features, batch size 
 onnx_model = convert_xgboost(model, initial_types=initial_type)
 
 # Save to file
-with open("xgb_geolocation_fraud_model.onnx", "wb") as f:
+with open("model.onnx", "wb") as f:
     f.write(onnx_model.SerializeToString())
